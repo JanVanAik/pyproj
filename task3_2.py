@@ -1,11 +1,13 @@
-# Задача 18: Требуется найти в списке A[1..N] самый близкий по величине элемент
-# к заданному числу X. Пользователь в первой строке вводит натуральное число
-# N – количество элементов в списке. В последующих  строках записаны N целых чисел Ai.
-# Последняя строка содержит число X
-#
-# *Пример:*
-#
-# 5
-#     1 2 3 4 5
-#     6
-#     -> 5
+import random
+
+# Если список вводит пользователь
+# userNum, targetNumber = (int(input('Введите количество чисел в списке: ')), int(input('Введите искомое число: ')))
+# randomList = [int(input('Введите следующее число массива: ')) for i in range( userNum)]
+
+userNum, targetNumber = (int(input('Введите количество чисел в списке: ')), int(input('Введите искомое число: ')))
+randomList = [random.randint(1, userNum) for i in range(userNum + 1)]
+result = randomList[0]
+for i in randomList:
+    if abs(i - targetNumber) < abs(result - targetNumber):
+        result = i
+print(f'В списке {randomList} из {userNum} чисел, первое найденное ближайшее к {targetNumber}  число - это {result}')
