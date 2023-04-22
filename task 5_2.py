@@ -1,5 +1,4 @@
 def letter_sort(array):
-
     if len(array) == 0:
         return array
     return f'{array[0] + str(array.count(array[0]))}' + letter_sort(array[1:].replace(array[0], ''))
