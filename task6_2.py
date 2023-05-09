@@ -3,20 +3,11 @@
 
 amount = int(input('Введите количество элементов прогрессии: '))
 progression = [int(input('Введите  следующий элемент прогрессии: ')) for n in range(amount)]
-userRange = tuple(input('Введите левую и правую границы заданного диапазона: ').replace(',', '').split())
-sortedProgression = sorted(progression)
+userRange = tuple(input('Введите минимальную и максимальную границы диапазона: ').replace(',', '').split())
 
-for val in sortedProgression:
-    if val >= int(userRange[0]):
-        leftBorder = sortedProgression.index(val)
-        break
+res = []
+for key, val in enumerate(progression):
+    if int(userRange[0]) <= val <= int(userRange[1]):
+        res.append(key)
 
-for val in sortedProgression:
-    if val == int(userRange[1]):
-        leftBorder = sortedProgression.index(val)
-        break
-    if val > int(userRange[1]):
-        rightBorder = sortedProgression.index(val)-1
-        break
-
-print(f'Числа в вашем диапазоне находятся от индекса {leftBorder} до {rightBorder}')
+print(f'Элементы со следующими индексами удовлетворяют заданные условия: {res}')
