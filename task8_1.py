@@ -8,8 +8,6 @@
 
 import re
 
-
-
 def fixNum(number):
     number = number.replace(' ', '')
     return f'{number[0]}({number[1:4]}){number[4:]}'
@@ -40,12 +38,16 @@ def importInfo(info):
         return 'User is added'
 
 
-def exportInfo(info):
-    pass
+def exportInfo(fileName):
+    with open('phoneBook.txt', 'r', encoding='utf-8') as file:
+        with open(f'{fileName}.txt', 'w', encoding='utf-8') as expFile:
+            for line in file:
+                expFile.write(line)
+    return 'Export File is ready'
+
 
 
 def searchInfo(info):
-    param = info.split(',')
     with open('phoneBook.txt', 'r', encoding='utf-8') as file:
         res = 'We have found following users: \n'
         for line in file:
@@ -62,7 +64,8 @@ if __name__ == '__main__':
         print(importInfo(input(f'Enter following parameters, split with commas.\n1)Name\n'
                          f'2)Second name\n3)Phone number \n4)Comments\n')))
     elif userChoice == 'export':
-        print(exportInfo(exportInfo(input())))
+        print(exportInfo(input('If you want to export information, '
+                                          'enter file name, where you want to export: ')))
     elif userChoice == 'search':
         print(searchInfo(input('Enter search parameter: ')))
 
